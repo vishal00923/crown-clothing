@@ -2,9 +2,9 @@ import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 
 import Header from './Components/Header/Header';
-import HomePage from './Pages/HomePage/HomePage.';
+import HomePage from './Pages/HomePage/HomePage';
 import ShopPage from './Pages/ShopPage/ShopPage';
-import SignInSignUpPage from './Pages/SignInSignUp/SignInSignUp';
+import SignInSignUpPage from './Pages/SignInSignUpPage/SignInSignUpPage';
 
 import './App.scss';
 
