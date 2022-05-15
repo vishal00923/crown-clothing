@@ -4,6 +4,8 @@
 body {
   font-family: 'Open Sans Condensed', sans-serif;
   padding: 2rem 5rem;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 a {
