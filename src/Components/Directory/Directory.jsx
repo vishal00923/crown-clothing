@@ -13,33 +13,28 @@ class Directory extends Component {
         {
           id: 1,
           title: 'hats',
-          imageUrl:
-            'https://i.ibb.co/t4M0Xrf/photo-1525740615880-50bb88fe0b1f-crop-faces-edges-cs-tinysrgb-fit-crop-fm-jpg-ixid-Mnwx-Mj-A3f-DB8-M.jpg',
+          imageUrl: 'https://bit.ly/38qemXP',
         },
         {
           id: 2,
           title: 'jackets',
-          imageUrl:
-            'https://i.ibb.co/vk9tfN4/photo-1611312449408-fcece27cdbb7-ixlib-rb-1-2-1-q-60-fm-jpg-crop-faces-edges-cs-tinysrgb-w-1200-fit.jpg',
+          imageUrl: 'https://bit.ly/3wSaqZ3',
         },
         {
           id: 3,
           title: 'sneakers',
-          imageUrl:
-            'https://i.ibb.co/25Wvfpz/photo-1600269452121-4f2416e55c28-ixlib-rb-1-2-1-q-60-fm-jpg-crop-faces-edges-cs-tinysrgb-w-1200-fit.jpg',
+          imageUrl: 'https://bit.ly/3NIThqj',
         },
         {
           id: 4,
           title: 'womens',
-          imageUrl:
-            'https://i.ibb.co/tDsBZxs/photo-1485043433441-db091a258e5a-crop-faces-edges-cs-tinysrgb-fit-crop-fm-jpg-ixid-Mnwx-Mj-A3f-DB8-M.jpg',
+          imageUrl: 'https://bit.ly/3wSB4B4',
           size: 'large',
         },
         {
           id: 5,
           title: 'mens',
-          imageUrl:
-            'https://i.ibb.co/4Yfk0MG/photo-1503443207922-dff7d543fd0e-crop-faces-edges-cs-tinysrgb-fit-crop-fm-jpg-ixid-Mnwx-Mj-A3f-DB8-M.jpg',
+          imageUrl: 'https://bit.ly/3lQkETz',
           size: 'large',
         },
       ],
