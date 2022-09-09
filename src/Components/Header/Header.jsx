@@ -1,10 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { ReactComponent as Logo } from '../../Assets/crown.svg';
+import { ReactComponent as Logo } from '../../assets/crown.svg';
 
 import './styles.scss';
 
-const Header = () => {
+export default function Header() {
   return (
     <div className="header">
       <Link className="logo-container" to="/">
@@ -23,6 +23,4 @@ const Header = () => {
       </div>
     </div>
   );
-};
-
-export default Header;
+}

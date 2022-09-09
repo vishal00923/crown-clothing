@@ -1,24 +1,19 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
+import Header from './components/Header/Header';
+import HomePage from './pages/HomePage/HomePage';
+import ShopPage from './pages/ShopPage/ShopPage';
+import SignInSignUpPage from './pages/SignInSignUpPage/SignInSignUpPage';
 
-import Header from './Components/Header/Header';
-import HomePage from './Pages/HomePage/HomePage';
-import ShopPage from './Pages/ShopPage/ShopPage';
-import SignInSignUpPage from './Pages/SignInSignUpPage/SignInSignUpPage';
-
-import './App.scss';
-
-const App = () => {
+export default function App() {
   return (
-    <div className="app">
+    <>
       <Header />
       <Routes>
         <Route exact path="/" element={<HomePage />} />
         <Route path="/shop" element={<ShopPage />} />
         <Route path="/sign-in" element={<SignInSignUpPage />} />
       </Routes>
-    </div>
+    </>
   );
-};
-
-export default App;
+}
