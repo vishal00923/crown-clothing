@@ -1,16 +1,17 @@
 .custom-button {
-  min-width: 10.5rem;
-  height: 3.125rem;
+  min-width: 152px;
+  height: 50px;
   letter-spacing: 0.5px;
-  line-height: 3.125rem;
-  padding: 0 2.2rem 0 2.2rem;
+  line-height: 50px;
+  padding: 0 32px;
   font-family: 'Open Sans Condensed';
   font-size: 1rem;
-  font-weight: bolder;
+  font-weight: bold;
   color: #fff;
   background-color: #000;
   text-transform: uppercase;
   border: none;
+  outline: none;
   cursor: pointer;
 
   &:hover {

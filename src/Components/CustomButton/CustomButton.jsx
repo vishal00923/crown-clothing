@@ -2,8 +2,6 @@ import React from 'react';
 
 import './styles.scss';
 
-const CustomButton = ({ children }) => {
+export default function CustomButton({ children }) {
   return <button className="custom-button">{children}</button>;
-};
-
-export default CustomButton;
+}
