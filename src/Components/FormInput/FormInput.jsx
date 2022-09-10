@@ -2,7 +2,14 @@ import React from 'react';
 
 import './styles.scss';
 
-const FormInput = ({ type, name, value, handleChange, label, required }) => {
+export default function FormInput({
+  type,
+  name,
+  value,
+  handleChange,
+  label,
+  required,
+}) {
   return (
     <div className="group">
       <input
@@ -22,6 +29,4 @@ const FormInput = ({ type, name, value, handleChange, label, required }) => {
       ) : null}
     </div>
   );
-};
-
-export default FormInput;
+}
