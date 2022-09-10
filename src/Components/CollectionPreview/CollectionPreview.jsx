@@ -1,10 +1,9 @@
 import React from 'react';
-
 import CollectionItem from '../CollectionItem/CollectionItem';
 
 import './styles.scss';
 
-const CollectionPreview = ({ title, items }) => {
+export default function CollectionPreview({ title, items }) {
   const filteredItems = items.filter((item, idx) => idx < 4);
 
   return (
@@ -24,6 +23,4 @@ const CollectionPreview = ({ title, items }) => {
       </div>
     </div>
   );
-};
-
-export default CollectionPreview;
+}
