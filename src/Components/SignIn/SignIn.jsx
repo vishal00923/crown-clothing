@@ -1,63 +1,50 @@
-import React, { Component } from 'react';
-
+import React, { useState } from 'react';
 import FormInput from '../FormInput/FormInput';
 import CustomButton from '../CustomButton/CustomButton';
 
 import './styles.scss';
 
-class SignIn extends Component {
-  constructor(props) {
-    super(props);
+export default function SignIn() {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
-    this.state = {
-      email: '',
-      password: '',
-    };
-  }
-
-  handleSubmit = (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-
-    this.setState({ email: '', password: '' });
+    setEmail('');
+    setPassword('');
   };
 
-  handleChange = (e) => {
-    const { name, value } = e.target;
-
-    // dynamically setting the state
-    this.setState({ [name]: value });
+  const handleEmail = (e) => {
+    setEmail(e.target.value);
   };
 
-  render() {
-    const { email, password } = this.state;
+  const handlePassword = (e) => {
+    setPassword(e.target.value);
+  };
 
-    return (
-      <div className="sign-in">
-        <h2>I already have an account</h2>
-        <span>Sign In with your email and password</span>
-
-        <form onSubmit={this.handleSubmit}>
-          <FormInput
-            type="email"
-            name="email"
-            value={email}
-            handleChange={this.handleChange}
-            label="Email"
-            required
-          />
-          <FormInput
-            type="password"
-            name="password"
-            value={password}
-            handleChange={this.handleChange}
-            label="Password"
-            required
-          />
-          <CustomButton type="submit">Sign In</CustomButton>
-        </form>
-      </div>
-    );
-  }
+  return (
+    <div className="sign-in">
+      <h2>I already have an account</h2>
+      <span>Sign In with your email and password</span>
+      <form onSubmit={handleSubmit}>
+        <FormInput
+          handleChange={handleEmail}
+          type="email"
+          name="email"
+          value={email}
+          label="Email"
+          required
+        />
+        <FormInput
+          handleChange={handlePassword}
+          type="password"
+          name="password"
+          value={password}
+          label="Password"
+          required
+        />
+        <CustomButton type="submit">Sign In</CustomButton>
+      </form>
+    </div>
+  );
 }
-
-export default SignIn;
