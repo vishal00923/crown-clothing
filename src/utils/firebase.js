@@ -1,6 +1,11 @@
 import { initializeApp } from 'firebase/app';
-import { getAuth, signInWithPopup, GoogleAuthProvider } from 'firebase/auth';
 import { getFirestore, doc, getDoc, setDoc } from 'firebase/firestore';
+import {
+  getAuth,
+  GoogleAuthProvider,
+  signInWithPopup,
+  signInWithRedirect,
+} from 'firebase/auth';
 
 const firebaseConfig = {
   apiKey: 'AIzaSyD4FzJzLcr1J6-vqix-EsTSHZLdhUW2poM',
@@ -11,41 +16,46 @@ const firebaseConfig = {
   appId: '1:24535546838:web:bd6c1bc1760a50e0c1c277',
 };
 
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
+const firebaseApp = initializeApp(firebaseConfig);
+
+const auth = getAuth(firebaseApp);
 
 const googleProvider = new GoogleAuthProvider();
+googleProvider.setCustomParameters({ prompt: 'select_account' });
 
-googleProvider.setCustomParameters({
-  prompt: 'select_account',
-});
+const signInWithGooglePopup = () => signInWithPopup(auth, googleProvider);
+const signInWithGoogleRedirect = () => signInWithRedirect(auth, googleProvider);
 
-export const auth = getAuth(app);
+const db = getFirestore(firebaseApp);
 
-export const signInWithGooglePopup = () =>
-  signInWithPopup(auth, googleProvider);
-
-export const db = getFirestore(app);
-
-export const createUserDocumentFromAuth = async (userAuth) => {
+const createUserDocumentFromAuth = async (userAuth) => {
+  // existing document reference
   const userDocRef = doc(db, 'users', userAuth.uid);
+  console.log(userDocRef);
 
+  // user data file object
   const userSnapshot = await getDoc(userDocRef);
+  console.log(userSnapshot.exists());
 
+  // if user exists
   if (!userSnapshot.exists()) {
     const { displayName, email } = userAuth;
     const createdAt = new Date();
 
     try {
-      await setDoc(userDocRef, {
-        displayName,
-        email,
-        createdAt,
-      });
+      await setDoc(userDocRef, { displayName, email, createdAt });
     } catch (error) {
-      console.log('error creating the user', error.message);
+      console.log('error creating the user: ', error.message);
     }
   }
 
   return userDocRef;
+};
+
+export {
+  db,
+  auth,
+  signInWithGooglePopup,
+  signInWithGoogleRedirect,
+  createUserDocumentFromAuth,
 };
