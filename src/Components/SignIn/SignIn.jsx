@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import FormInput from '../FormInput/FormInput';
 import CustomButton from '../CustomButton/CustomButton';
 import GoogleButton from 'react-google-button';
@@ -7,6 +7,7 @@ import {
   createUserDocumentFromAuth,
   signInAuthUserWithEmailAndPassword,
 } from '../../utils/firebase';
+import { UserContext } from '../../contexts/userContext';
 
 import './styles.scss';
 
@@ -19,6 +20,8 @@ export default function SignIn() {
   const [formFields, setFormFields] = useState(defaultFormFields);
   const { email, password } = formFields;
 
+  const { setCurrentUser } = useContext(UserContext);
+
   function resetFormFields() {
     setFormFields(defaultFormFields);
   }
@@ -27,11 +30,11 @@ export default function SignIn() {
     e.preventDefault();
 
     try {
-      const response = await signInAuthUserWithEmailAndPassword(
+      const { user } = await signInAuthUserWithEmailAndPassword(
         email,
         password
       );
-      console.log(response);
+      setCurrentUser(user);
       resetFormFields();
     } catch (error) {
       alert(error.message);
@@ -46,6 +49,7 @@ export default function SignIn() {
   const googleSignIn = async () => {
     const { user } = await signInWithGooglePopup();
     createUserDocumentFromAuth(user);
+    setCurrentUser(user);
   };
 
   return (

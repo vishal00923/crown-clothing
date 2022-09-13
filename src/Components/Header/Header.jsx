@@ -1,10 +1,19 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { ReactComponent as Logo } from '../../assets/crown.svg';
+import { UserContext } from '../../contexts/userContext';
+import { signOutUser } from '../../utils/firebase';
 
 import './styles.scss';
 
 export default function Header() {
+  const { currentUser, setCurrentUser } = useContext(UserContext);
+
+  const signOutHandler = async () => {
+    await signOutUser();
+    setCurrentUser(null);
+  };
+
   return (
     <div className="header">
       <Link className="logo-container" to="/">
@@ -17,9 +26,19 @@ export default function Header() {
         <Link className="option" to="/contact">
           CONTACT
         </Link>
-        <Link className="option" to="/sign-in">
-          SIGN IN
-        </Link>
+        {currentUser ? (
+          <span
+            onClick={signOutHandler}
+            className="option"
+            style={{ cursor: 'pointer' }}
+          >
+            SIGN OUT
+          </span>
+        ) : (
+          <Link className="option" to="/auth">
+            SIGN IN
+          </Link>
+        )}
       </div>
     </div>
   );
