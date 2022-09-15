@@ -5,6 +5,10 @@ import {
   GoogleAuthProvider,
   signInWithPopup,
   signInWithRedirect,
+  signInWithEmailAndPassword,
+  createUserWithEmailAndPassword,
+  signOut,
+  onAuthStateChanged,
 } from 'firebase/auth';
 
 const firebaseConfig = {
@@ -28,14 +32,16 @@ const signInWithGoogleRedirect = () => signInWithRedirect(auth, googleProvider);
 
 const db = getFirestore(firebaseApp);
 
-const createUserDocumentFromAuth = async (userAuth) => {
+const createUserDocumentFromAuth = async (userAuth, additionalInformation) => {
+  if (!userAuth) return;
+
   // existing document reference
   const userDocRef = doc(db, 'users', userAuth.uid);
-  console.log(userDocRef);
+  // console.log(userDocRef);
 
   // user data file object
   const userSnapshot = await getDoc(userDocRef);
-  console.log(userSnapshot.exists());
+  // console.log(userSnapshot.exists());
 
   // if user exists
   if (!userSnapshot.exists()) {
@@ -43,7 +49,12 @@ const createUserDocumentFromAuth = async (userAuth) => {
     const createdAt = new Date();
 
     try {
-      await setDoc(userDocRef, { displayName, email, createdAt });
+      await setDoc(userDocRef, {
+        displayName,
+        email,
+        createdAt,
+        ...additionalInformation,
+      });
     } catch (error) {
       console.log('error creating the user: ', error.message);
     }
@@ -52,10 +63,29 @@ const createUserDocumentFromAuth = async (userAuth) => {
   return userDocRef;
 };
 
+const createAuthUserWithEmailAndPassword = async (email, password) => {
+  if (!email || !password) return;
+  return await createUserWithEmailAndPassword(auth, email, password);
+};
+
+const signInAuthUserWithEmailAndPassword = async (email, password) => {
+  if (!email || !email) return;
+  return await signInWithEmailAndPassword(auth, email, password);
+};
+
+const signOutUser = async () => await signOut(auth);
+
+const onAuthStateChangedListener = (callback) =>
+  onAuthStateChanged(auth, callback);
+
 export {
   db,
   auth,
   signInWithGooglePopup,
   signInWithGoogleRedirect,
   createUserDocumentFromAuth,
+  signInAuthUserWithEmailAndPassword,
+  createAuthUserWithEmailAndPassword,
+  signOutUser,
+  onAuthStateChangedListener,
 };

@@ -3,10 +3,10 @@ import React from 'react';
 import './styles.scss';
 
 export default function FormInput({
+  handleChange,
   type,
   name,
   value,
-  handleChange,
   label,
   required,
 }) {
@@ -14,11 +14,10 @@ export default function FormInput({
     <div className="group">
       <input
         className="form-input"
+        onChange={handleChange}
         type={type}
         name={name}
         value={value}
-        onChange={handleChange}
-        label={label}
         required={required}
       />
 

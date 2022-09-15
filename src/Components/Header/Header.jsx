@@ -7,11 +7,10 @@ import { signOutUser } from '../../utils/firebase';
 import './styles.scss';
 
 export default function Header() {
-  const { currentUser, setCurrentUser } = useContext(UserContext);
+  const { currentUser } = useContext(UserContext);
 
   const signOutHandler = async () => {
     await signOutUser();
-    setCurrentUser(null);
   };
 
   return (
