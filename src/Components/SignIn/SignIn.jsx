@@ -1,13 +1,15 @@
 import React, { useState, useContext } from 'react';
-import FormInput from '../FormInput/FormInput';
-import CustomButton from '../CustomButton/CustomButton';
 import GoogleButton from 'react-google-button';
 import {
   signInWithGooglePopup,
   createUserDocumentFromAuth,
   signInAuthUserWithEmailAndPassword,
 } from '../../utils/firebase';
+
 import { UserContext } from '../../contexts/userContext';
+
+import Input from '../Input/Input';
+import Button from '../Button/Button';
 
 import './styles.scss';
 
@@ -53,11 +55,11 @@ export default function SignIn() {
   };
 
   return (
-    <div className="sign-in">
+    <div className="signIn">
       <h2>I already have an account</h2>
       <p>Sign In with your email and password</p>
       <form onSubmit={handleSubmit}>
-        <FormInput
+        <Input
           handleChange={handleChange}
           type="email"
           name="email"
@@ -65,7 +67,7 @@ export default function SignIn() {
           label="Email"
           required
         />
-        <FormInput
+        <Input
           handleChange={handleChange}
           type="password"
           name="password"
@@ -73,8 +75,8 @@ export default function SignIn() {
           label="Password"
           required
         />
-        <div className="sign-in_buttonContainer">
-          <CustomButton type="submit">sign in</CustomButton>
+        <div className="signIn__ButtonContainer">
+          <Button type="submit">sign in</Button>
           <GoogleButton
             onClick={googleSignIn}
             type="light"
