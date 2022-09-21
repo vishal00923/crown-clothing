@@ -1,11 +1,13 @@
 import React, { useState, useContext } from 'react';
-import FormInput from '../FormInput/FormInput';
-import CustomButton from '../CustomButton/CustomButton';
 import {
   createAuthUserWithEmailAndPassword,
   createUserDocumentFromAuth,
 } from '../../utils/firebase';
+
 import { UserContext } from '../../contexts/userContext';
+
+import Input from '../Input/Input';
+import Button from '../Button/Button';
 
 import './styles.scss';
 
@@ -55,12 +57,12 @@ export default function SignUp() {
   };
 
   return (
-    <div className="sign-up">
+    <div className="signUp">
       <h2>I do not have an account</h2>
       <p>Sign up with your email and password</p>
 
       <form onSubmit={handleSubmit}>
-        <FormInput
+        <Input
           handleChange={handleChange}
           type="text"
           name="displayName"
@@ -68,7 +70,7 @@ export default function SignUp() {
           label="Display Name"
           required
         />
-        <FormInput
+        <Input
           handleChange={handleChange}
           type="email"
           name="email"
@@ -76,7 +78,7 @@ export default function SignUp() {
           label="Email"
           required
         />
-        <FormInput
+        <Input
           handleChange={handleChange}
           type="password"
           name="password"
@@ -84,7 +86,7 @@ export default function SignUp() {
           label="Password"
           required
         />
-        <FormInput
+        <Input
           handleChange={handleChange}
           type="password"
           name="confirmPassword"
@@ -92,7 +94,7 @@ export default function SignUp() {
           label="Confirm Password"
           required
         />
-        <CustomButton type="submit">sign up</CustomButton>
+        <Button type="submit">sign up</Button>
       </form>
     </div>
   );

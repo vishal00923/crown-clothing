@@ -1,18 +1,21 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
-import Header from './components/Header/Header';
-import HomePage from './pages/HomePage/HomePage';
-import ShopPage from './pages/ShopPage/ShopPage';
-import SignInSignUpPage from './pages/SignInSignUpPage/SignInSignUpPage';
+
+import Nav from './components/Nav/Nav';
+import Home from './routes/Home/Home';
+import Shop from './routes/Shop/Shop';
+import Auth from './routes/Auth/Auth';
+import Checkout from './routes/Checkout/Checkout';
 
 export default function App() {
   return (
     <>
-      <Header />
+      <Nav />
       <Routes>
-        <Route exact path="/" element={<HomePage />} />
-        <Route path="/shop" element={<ShopPage />} />
-        <Route path="/sign-in" element={<SignInSignUpPage />} />
+        <Route exact path="/" element={<Home />} />
+        <Route path="shop/*" element={<Shop />} />
+        <Route path="auth" element={<Auth />} />
+        <Route path="checkout" element={<Checkout />} />
       </Routes>
     </>
   );
