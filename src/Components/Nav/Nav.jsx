@@ -1,16 +1,16 @@
-import React, { useContext } from 'react';
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { ReactComponent as Logo } from '../../assets/crown.svg';
 
-import { UserContext } from '../../contexts/userContext';
 import { signOutUser } from '../../utils/firebase';
+import { selectCurrentUser } from '../../store/user/userSelector';
 
 import Cart from '../Cart/Cart';
 
 import './styles.scss';
 
 export default function Nav() {
-  const { currentUser } = useContext(UserContext);
+  const currentUser = useSelector(selectCurrentUser);
 
   const signOutHandler = async () => {
     await signOutUser();

@@ -1,12 +1,10 @@
-import React, { useState, useContext } from 'react';
+import { useState } from 'react';
 import GoogleButton from 'react-google-button';
 import {
   signInWithGooglePopup,
   createUserDocumentFromAuth,
   signInAuthUserWithEmailAndPassword,
 } from '../../utils/firebase';
-
-import { UserContext } from '../../contexts/userContext';
 
 import Input from '../Input/Input';
 import Button from '../Button/Button';
@@ -22,8 +20,6 @@ export default function SignIn() {
   const [formFields, setFormFields] = useState(defaultFormFields);
   const { email, password } = formFields;
 
-  const { setCurrentUser } = useContext(UserContext);
-
   function resetFormFields() {
     setFormFields(defaultFormFields);
   }
@@ -32,14 +28,10 @@ export default function SignIn() {
     e.preventDefault();
 
     try {
-      const { user } = await signInAuthUserWithEmailAndPassword(
-        email,
-        password
-      );
-      setCurrentUser(user);
+      await signInAuthUserWithEmailAndPassword(email, password);
       resetFormFields();
     } catch (error) {
-      alert(error.message);
+      console.log('user sign in failed', error);
     }
   };
 
@@ -51,7 +43,6 @@ export default function SignIn() {
   const googleSignIn = async () => {
     const { user } = await signInWithGooglePopup();
     createUserDocumentFromAuth(user);
-    setCurrentUser(user);
   };
 
   return (
