@@ -1,7 +1,7 @@
-/* google font api */
+/*==================== Google Font ==================== */
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans+Condensed:ital,wght@0,300;0,700;1,300&display=swap');
 
-/* css reset */
+/* ================== CSS Reset ====================== */
 * {
   margin: 0;
   box-sizing: border-box;
@@ -17,4 +17,8 @@ body {
 a {
   text-decoration: none;
   color: #000;
+}
+
+li {
+  list-style: none;
 }
