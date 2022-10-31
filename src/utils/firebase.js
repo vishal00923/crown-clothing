@@ -91,7 +91,7 @@ const createUserDocumentFromAuth = async (
     }
   }
 
-  return userDocRef;
+  return userSnapshot;
 };
 
 const createAuthUserWithEmailAndPassword = async (email, password) => {
@@ -106,8 +106,18 @@ const signInAuthUserWithEmailAndPassword = async (email, password) => {
 
 const signOutUser = async () => await signOut(auth);
 
-const onAuthStateChangedListener = (callback) =>
-  onAuthStateChanged(auth, callback);
+const getCurrentUser = () => {
+  return new Promise((resolve, reject) => {
+    const unsubscribe = onAuthStateChanged(
+      auth,
+      (userAuth) => {
+        unsubscribe();
+        resolve(userAuth);
+      },
+      reject
+    );
+  });
+};
 
 export {
   db,
@@ -118,7 +128,7 @@ export {
   signInAuthUserWithEmailAndPassword,
   createAuthUserWithEmailAndPassword,
   signOutUser,
-  onAuthStateChangedListener,
   addCollectionAndDocuments,
   getCategoriesAndDocuments,
+  getCurrentUser,
 };
