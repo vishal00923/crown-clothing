@@ -1,13 +1,14 @@
 import { useState } from 'react';
-import GoogleButton from 'react-google-button';
+import { useDispatch } from 'react-redux';
+
 import {
-  signInWithGooglePopup,
-  createUserDocumentFromAuth,
-  signInAuthUserWithEmailAndPassword,
-} from '../../utils/firebase';
+  googleSignInStart,
+  emailSignInStart,
+} from '../../store/user/userAction';
 
 import Input from '../Input/Input';
 import Button from '../Button/Button';
+import GoogleButton from 'react-google-button';
 
 import './styles.scss';
 
@@ -17,6 +18,8 @@ const defaultFormFields = {
 };
 
 export default function SignIn() {
+  const dispatch = useDispatch();
+
   const [formFields, setFormFields] = useState(defaultFormFields);
   const { email, password } = formFields;
 
@@ -24,11 +27,11 @@ export default function SignIn() {
     setFormFields(defaultFormFields);
   }
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
 
     try {
-      await signInAuthUserWithEmailAndPassword(email, password);
+      dispatch(emailSignInStart(email, password));
       resetFormFields();
     } catch (error) {
       console.log('user sign in failed', error);
@@ -40,37 +43,36 @@ export default function SignIn() {
     setFormFields({ ...formFields, [name]: value });
   };
 
-  const googleSignIn = async () => {
-    const { user } = await signInWithGooglePopup();
-    createUserDocumentFromAuth(user);
+  const googleSignIn = () => {
+    dispatch(googleSignInStart());
   };
 
   return (
-    <div className="signIn">
+    <div className='signIn'>
       <h2>I already have an account</h2>
       <p>Sign In with your email and password</p>
       <form onSubmit={handleSubmit}>
         <Input
           handleChange={handleChange}
-          type="email"
-          name="email"
+          type='email'
+          name='email'
           value={email}
-          label="Email"
+          label='Email'
           required
         />
         <Input
           handleChange={handleChange}
-          type="password"
-          name="password"
+          type='password'
+          name='password'
           value={password}
-          label="Password"
+          label='Password'
           required
         />
-        <div className="signIn__ButtonContainer">
-          <Button type="submit">sign in</Button>
+        <div className='signIn__ButtonContainer'>
+          <Button type='submit'>sign in</Button>
           <GoogleButton
             onClick={googleSignIn}
-            type="light"
+            type='light'
             style={{
               minWidth: '152px',
               height: '50px',
