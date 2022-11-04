@@ -16,13 +16,13 @@ export default function ProductCard({ product }) {
   };
 
   return (
-    <div className="product">
+    <div className='product'>
       <img src={imageUrl} alt={`${name}`} />
-      <div className="productFooter">
-        <span className="productName">{name}</span>
-        <span className="productPrice">${price}</span>
+      <div className='productFooter'>
+        <span className='productName'>{name}</span>
+        <span className='productPrice'>${price}</span>
       </div>
-      <Button handleClick={handleAddItemToCart} type="inverted">
+      <Button handleClick={handleAddItemToCart} type='inverted'>
         add to cart
       </Button>
     </div>

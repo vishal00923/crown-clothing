@@ -20,9 +20,9 @@ export default function Cart() {
   };
 
   return (
-    <div onClick={toggleCart} className="cart">
-      <CartIcon className="cartIcon" />
-      <span className="cart__ItemCount">{cartCount}</span>
+    <div onClick={toggleCart} className='cart'>
+      <CartIcon className='cartIcon' />
+      <span className='cart__ItemCount'>{cartCount}</span>
       {isCartOpen && <CartDropdown />}
     </div>
   );

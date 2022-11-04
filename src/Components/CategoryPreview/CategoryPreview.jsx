@@ -13,14 +13,14 @@ export default function CategoryPreview({ title, products }) {
   };
 
   return (
-    <div className="categoryPreview">
+    <div className='categoryPreview'>
       <h2>
-        <span onClick={handleClick} className="categoryPreview__Title">
+        <span onClick={handleClick} className='categoryPreview__Title'>
           {title.toUpperCase()}
         </span>
       </h2>
 
-      <div className="categoryPreview__Preview">
+      <div className='categoryPreview__Preview'>
         {products
           .filter((_, idx) => idx < 4)
           .map((product) => (

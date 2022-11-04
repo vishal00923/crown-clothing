@@ -14,12 +14,12 @@ export default function DirectoryItem({ category }) {
   return (
     <div onClick={handleNavigation} className={`directoryItem ${size}`}>
       <div
-        className="directoryItem__bgImage"
+        className='directoryItem__bgImage'
         style={{ backgroundImage: `url(${imageUrl})` }}
       />
-      <div className="directoryItem__contents">
-        <h1 className="directoryItem__title">{title.toUpperCase()}</h1>
-        <p className="directoryItem__subtitle">SHOP NOW</p>
+      <div className='directoryItem__contents'>
+        <h1 className='directoryItem__title'>{title.toUpperCase()}</h1>
+        <p className='directoryItem__subtitle'>SHOP NOW</p>
       </div>
     </div>
   );

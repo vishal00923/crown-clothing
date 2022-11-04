@@ -11,9 +11,9 @@ export default function Input({
   required,
 }) {
   return (
-    <div className="input">
+    <div className='input'>
       <input
-        className="inputFeild"
+        className='inputFeild'
         onChange={handleChange}
         type={type}
         name={name}

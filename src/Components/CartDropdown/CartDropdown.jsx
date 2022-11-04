@@ -17,14 +17,14 @@ export default function CartDropdown() {
   };
 
   return (
-    <div className="cartDropdown">
-      <div className="cartDropdown__Items">
+    <div className='cartDropdown'>
+      <div className='cartDropdown__Items'>
         {cartItems.length ? (
           cartItems.map((cartItem) => (
             <CartItem key={cartItem.id} cartItem={cartItem} />
           ))
         ) : (
-          <p className="empty-message">Your cart is empty</p>
+          <p className='empty-message'>Your cart is empty</p>
         )}
       </div>
       <Button handleClick={handlegoToCheckout}>go to checkout</Button>
