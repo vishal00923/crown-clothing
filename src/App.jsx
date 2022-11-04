@@ -4,7 +4,8 @@ import { Routes, Route } from 'react-router-dom';
 
 import { checkUserSession } from './store/user/userAction';
 
-import Nav from './components/Nav/Nav';
+import Nav from './Components/Nav/Nav';
+
 import Home from './routes/Home/Home';
 import Shop from './routes/Shop/Shop';
 import Auth from './routes/Auth/Auth';

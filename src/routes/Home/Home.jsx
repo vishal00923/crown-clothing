@@ -1,7 +1,7 @@
 import React from 'react';
 
 import categories from '../../data/categories';
-import Directory from '../../components/Directory/Directory';
+import Directory from '../../Components/Directory/Directory';
 
 import './styles.scss';
 

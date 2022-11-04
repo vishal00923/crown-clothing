@@ -4,8 +4,8 @@ import {
   selectCartTotal,
 } from '../../store/cart/cartSelector';
 
-import PaymentForm from '../../components/PaymentForm/PaymentForm';
-import CheckoutItem from '../../components/CheckoutItem/CheckoutItem';
+import PaymentForm from '../../Components/PaymentForm/PaymentForm';
+import CheckoutItem from '../../Components/CheckoutItem/CheckoutItem';
 
 import './styles.scss';
 
