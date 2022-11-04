@@ -7,7 +7,7 @@ import './styles.scss';
 
 export default function Auth() {
   return (
-    <div className="auth">
+    <div className='auth'>
       <SignIn />
       <SignUp />
     </div>

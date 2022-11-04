@@ -7,7 +7,7 @@ import './styles.scss';
 
 export default function Home() {
   return (
-    <div className="home">
+    <div className='home'>
       <Directory categories={categories} />
     </div>
   );
