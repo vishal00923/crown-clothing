@@ -11,6 +11,9 @@ import Shop from './routes/Shop/Shop';
 import Auth from './routes/Auth/Auth';
 import Checkout from './routes/Checkout/Checkout';
 
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 export default function App() {
   const dispatch = useDispatch();
 
@@ -28,6 +31,19 @@ export default function App() {
         <Route path='auth' element={<Auth />} />
         <Route path='checkout' element={<Checkout />} />
       </Routes>
+
+      <ToastContainer
+        position='top-center'
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop={true}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss={false}
+        draggable
+        pauseOnHover
+        theme='light'
+      />
     </>
   );
 }

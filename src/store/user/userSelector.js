@@ -6,3 +6,8 @@ export const selectCurrentUser = createSelector(
   [selectUserReducer],
   (user) => user.currentUser
 );
+
+export const selectError = createSelector(
+  [selectUserReducer],
+  (user) => user.error
+);

@@ -6,6 +6,7 @@ import {
   signUpSuccess,
   signUpFailure,
   signOutSuccess,
+  signOutFailure,
 } from './userAction';
 
 import {
@@ -16,6 +17,8 @@ import {
   createAuthUserWithEmailAndPassword,
   signOutUser,
 } from '../../utils/firebase';
+
+import { toast } from 'react-toastify';
 
 export function* getSnapshotFromUserAuth(userAuth, additionalDetails) {
   try {
@@ -68,8 +71,10 @@ export function* signInWithEmail({ payload: { email, password } }) {
     );
 
     yield call(getSnapshotFromUserAuth, user);
+    toast.success(`Welcome back ${email} 👋`);
   } catch (error) {
     yield put(signInFailure(error));
+    toast.error(`Error: ${error.message}`);
   }
 }
 
@@ -86,8 +91,10 @@ export function* signUp({ payload: { email, password, displayName } }) {
     );
 
     yield put(signUpSuccess(user, { displayName }));
+    toast.success(`Welcome ${displayName} 👋`);
   } catch (error) {
     yield put(signUpFailure(error));
+    toast.error(`Error: ${error.message}`);
   }
 }
 
@@ -107,8 +114,10 @@ export function* signOut() {
   try {
     yield call(signOutUser);
     yield put(signOutSuccess());
+    toast.success('Enjoy your day 🎉');
   } catch (error) {
-    yield put(signInFailure(error));
+    yield put(signOutFailure(error));
+    toast.error(`Error: ${error.message}`);
   }
 }
 
