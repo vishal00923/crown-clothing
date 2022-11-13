@@ -6,31 +6,29 @@ const INITIAL_STATE = {
 };
 
 export const cartReducer = (state = INITIAL_STATE, action = {}) => {
-  const { type, payload } = action;
-
-  switch (type) {
+  switch (action.type) {
     case CART_ACTION_TYPES.SET_IS_CART_OPEN:
       return {
         ...state,
-        isCartOpen: payload,
+        isCartOpen: action.payload,
       };
 
     case CART_ACTION_TYPES.SET_CART_ITEMS:
       return {
         ...state,
-        cartItems: payload,
+        cartItems: action.payload,
       };
 
     case CART_ACTION_TYPES.SET_CART_COUNT:
       return {
         ...state,
-        cartCount: payload,
+        cartCount: action.payload,
       };
 
     case CART_ACTION_TYPES.SET_CART_TOTAL:
       return {
         ...state,
-        cartTotal: payload,
+        cartTotal: action.payload,
       };
     default:
       return state;
