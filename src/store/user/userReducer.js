@@ -7,28 +7,26 @@ const INITIAL_STATE = {
 };
 
 export const userReducer = (state = INITIAL_STATE, action = {}) => {
-  const { type, payload } = action;
-
-  switch (type) {
+  switch (action.type) {
     case USER_ACTION_TYPES.SIGN_IN_SUCCESS:
       return {
         ...state,
-        currentUser: payload,
+        currentUser: action.payload,
       };
     case USER_ACTION_TYPES.SIGN_IN_FAILURE:
       return {
         ...state,
-        error: payload,
+        error: action.payload,
       };
     case USER_ACTION_TYPES.SIGN_UP_SUCCESS:
       return {
         ...state,
-        currentUser: payload,
+        currentUser: action.payload,
       };
     case USER_ACTION_TYPES.SIGN_UP_FAILURE:
       return {
         ...state,
-        error: payload,
+        error: action.payload,
       };
     case USER_ACTION_TYPES.SIGN_OUT_SUCCESS:
       return {
@@ -38,7 +36,7 @@ export const userReducer = (state = INITIAL_STATE, action = {}) => {
     case USER_ACTION_TYPES.SIGN_OUT_FAILURE:
       return {
         ...state,
-        error: payload,
+        error: action.payload,
       };
     default:
       return state;
