@@ -1,15 +1,15 @@
 import { useSelector } from 'react-redux';
 import {
+  selectIsLoading,
   selectCategoriesMap,
-  selectCategoriesIsLoading,
-} from '../../store/categories/categoriesSelector';
+} from '../../store/category/categorySelector';
 
 import Spinner from '../../Components/Spinner/Spinner';
 import CategoryPreview from '../../Components/CategoryPreview/CategoryPreview';
 
 export default function CategoriesPreview() {
+  const isLoading = useSelector(selectIsLoading);
   const categoriesMap = useSelector(selectCategoriesMap);
-  const isLoading = useSelector(selectCategoriesIsLoading);
 
   return (
     <>

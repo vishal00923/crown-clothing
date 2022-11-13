@@ -7,16 +7,17 @@ import ProductCard from '../../Components/ProductCard/ProductCard';
 
 import {
   selectCategoriesMap,
-  selectCategoriesIsLoading,
-} from '../../store/categories/categoriesSelector';
+  selectIsLoading,
+} from '../../store/category/categorySelector';
 
 import './styles.scss';
 
 export default function Category() {
   const { category } = useParams();
 
+  const isLoading = useSelector(selectIsLoading);
   const categoriesMap = useSelector(selectCategoriesMap);
-  const isLoading = useSelector(selectCategoriesIsLoading);
+
   const [products, setProducts] = useState(categoriesMap[category]);
 
   useEffect(() => {

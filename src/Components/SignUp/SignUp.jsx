@@ -3,6 +3,8 @@ import { useDispatch } from 'react-redux';
 
 import { signUpStart } from '../../store/user/userAction';
 
+import { toast } from 'react-toastify';
+
 import Input from '../Input/Input';
 import Button from '../Button/Button';
 
@@ -29,15 +31,15 @@ export default function SignUp() {
     e.preventDefault();
 
     if (password !== confirmPassword) {
-      alert('Password and Confirm Password must be same.');
+      toast.error('Password and Confirm Password must be same.');
       return;
     }
 
     try {
       dispatch(signUpStart(email, password, displayName));
       resetFormFields();
-    } catch (error) {
-      console.log(error.message);
+    } catch (err) {
+      toast.error(`${err.message}`);
     }
   };
 
