@@ -3,7 +3,8 @@ import { addItemToCart } from '../../store/cart/cartAction';
 import { selectCartItems } from '../../store/cart/cartSelector';
 
 import Button from '../Button/Button';
-import './styles.scss';
+
+import './ProductCardStyles.scss';
 
 export default function ProductCard({ product }) {
   const dispatch = useDispatch();
@@ -11,18 +12,17 @@ export default function ProductCard({ product }) {
 
   const { imageUrl, name, price } = product;
 
-  const handleAddItemToCart = () => {
-    dispatch(addItemToCart(cartItems, product));
-  };
-
   return (
-    <div className='product'>
+    <div className='productCardContainer'>
       <img src={imageUrl} alt={`${name}`} />
-      <div className='productFooter'>
+      <div className='productCardFooter'>
         <span className='productName'>{name}</span>
         <span className='productPrice'>${price}</span>
       </div>
-      <Button handleClick={handleAddItemToCart} type='inverted'>
+      <Button
+        handleClick={() => dispatch(addItemToCart(cartItems, product))}
+        type='inverted'
+      >
         add to cart
       </Button>
     </div>

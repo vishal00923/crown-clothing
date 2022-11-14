@@ -1,14 +1,12 @@
-import React from 'react';
-
 import categories from '../../data/categories';
 import Directory from '../../Components/Directory/Directory';
 
-import './styles.scss';
+import { HomeContainer } from './HomeStyles';
 
 export default function Home() {
   return (
-    <div className='home'>
+    <HomeContainer>
       <Directory categories={categories} />
-    </div>
+    </HomeContainer>
   );
 }

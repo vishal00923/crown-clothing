@@ -1,5 +1,4 @@
 import { useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
 import { ReactComponent as Logo } from '../../assets/crown.svg';
 
 import { useDispatch } from 'react-redux';
@@ -9,41 +8,41 @@ import { selectCurrentUser } from '../../store/user/userSelector';
 
 import Cart from '../Cart/Cart';
 
-import './styles.scss';
+import {
+  OptionLink,
+  NavContainer,
+  LogoContainer,
+  OptionContainer,
+} from './NavStyles';
 
 export default function Nav() {
   const dispatch = useDispatch();
   const currentUser = useSelector(selectCurrentUser);
 
-  const signOutHandler = () => dispatch(signOutStart());
-
   return (
-    <div className='nav'>
-      <Link className='navLogo' to='/'>
+    <NavContainer>
+      <LogoContainer to='/'>
         <Logo className='logo' />
-      </Link>
-      <div className='navOptions'>
-        <Link className='option' to='/shop'>
-          SHOP
-        </Link>
-        <Link className='option' to='/contact'>
-          CONTACT
-        </Link>
+      </LogoContainer>
+
+      <OptionContainer>
+        <OptionLink to='/shop'>SHOP</OptionLink>
+        <OptionLink to='/contact'>CONTACT</OptionLink>
         {currentUser ? (
-          <span
-            onClick={signOutHandler}
-            className='option'
+          <OptionLink
+            as='div'
+            onClick={() => dispatch(signOutStart())}
             style={{ cursor: 'pointer' }}
           >
             SIGN OUT
-          </span>
+          </OptionLink>
         ) : (
-          <Link className='option' to='/auth'>
+          <OptionLink className='option' to='/auth'>
             SIGN IN
-          </Link>
+          </OptionLink>
         )}
         <Cart />
-      </div>
-    </div>
+      </OptionContainer>
+    </NavContainer>
   );
 }
