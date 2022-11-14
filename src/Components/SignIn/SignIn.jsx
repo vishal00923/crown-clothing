@@ -7,10 +7,9 @@ import {
 } from '../../store/user/userAction';
 
 import Input from '../Input/Input';
-import Button from '../Button/Button';
-import GoogleButton from 'react-google-button';
+import Button, { BUTTON_TYPE_CLASSES } from '../Button/Button';
 
-import './styles.scss';
+import { SignInContainer, ButtonsContainer } from './SignInStyles';
 
 const defaultFormFields = {
   email: '',
@@ -23,9 +22,7 @@ export default function SignIn() {
   const [formFields, setFormFields] = useState(defaultFormFields);
   const { email, password } = formFields;
 
-  function resetFormFields() {
-    setFormFields(defaultFormFields);
-  }
+  const resetFormFields = () => setFormFields(defaultFormFields);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -43,12 +40,8 @@ export default function SignIn() {
     setFormFields({ ...formFields, [name]: value });
   };
 
-  const googleSignIn = () => {
-    dispatch(googleSignInStart());
-  };
-
   return (
-    <div className='signIn'>
+    <SignInContainer>
       <h2>I already have an account</h2>
       <p>Sign In with your email and password</p>
       <form onSubmit={handleSubmit}>
@@ -68,23 +61,18 @@ export default function SignIn() {
           label='Password'
           required
         />
-        <div className='signIn__ButtonContainer'>
-          <Button type='submit'>sign in</Button>
-          <GoogleButton
-            onClick={googleSignIn}
-            type='light'
-            style={{
-              minWidth: '152px',
-              height: '50px',
-              border: 'none',
-              outline: 'none',
-              fontFamily: 'Open Sans Condensed',
-              fontWeight: 'bold',
-              fontSize: '1.1rem',
-            }}
-          />
-        </div>
+        <ButtonsContainer>
+          <Button style={{ marginRight: '20px' }} type='submit'>
+            sign in
+          </Button>
+          <Button
+            buttonType={BUTTON_TYPE_CLASSES.google}
+            onClick={() => dispatch(googleSignInStart())}
+          >
+            sign in with google
+          </Button>
+        </ButtonsContainer>
       </form>
-    </div>
+    </SignInContainer>
   );
 }

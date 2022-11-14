@@ -4,40 +4,46 @@ import {
   selectCartTotal,
 } from '../../store/cart/cartSelector';
 
-import PaymentForm from '../../Components/PaymentForm/PaymentForm';
+import PaymentForm from '../../Components/Payment/Payment';
 import CheckoutItem from '../../Components/CheckoutItem/CheckoutItem';
 
-import './styles.scss';
+import {
+  CartTotal,
+  CheckoutHeader,
+  CheckoutContainer,
+  CheckoutHeaderBlock,
+} from './CheckoutStyles';
 
 export default function Checkout() {
   const cartItems = useSelector(selectCartItems);
   const cartTotal = useSelector(selectCartTotal);
 
   return (
-    <div className='checkout'>
-      <div className='checkoutHeader'>
-        <div className='checkoutHeader__Block'>
+    <CheckoutContainer>
+      <CheckoutHeader>
+        <CheckoutHeaderBlock>
           <span>Product</span>
-        </div>
-        <div className='checkoutHeader__Block'>
+        </CheckoutHeaderBlock>
+        <CheckoutHeaderBlock>
           <span>Description</span>
-        </div>
-        <div className='checkoutHeader__Block'>
+        </CheckoutHeaderBlock>
+        <CheckoutHeaderBlock>
           <span>Quantity</span>
-        </div>
-        <div className='checkoutHeader__Block'>
+        </CheckoutHeaderBlock>
+        <CheckoutHeaderBlock>
           <span>Price</span>
-        </div>
-        <div className='checkoutHeader__Block'>
+        </CheckoutHeaderBlock>
+        <CheckoutHeaderBlock>
           <span>Remove</span>
-        </div>
-      </div>
+        </CheckoutHeaderBlock>
+      </CheckoutHeader>
+
       {cartItems.map((cartItem) => (
         <CheckoutItem key={cartItem.id} cartItem={cartItem} />
       ))}
-      <span className='chekoutTotal'>Total : ${cartTotal}</span>
 
+      <CartTotal>Total : ${cartTotal}</CartTotal>
       <PaymentForm />
-    </div>
+    </CheckoutContainer>
   );
 }

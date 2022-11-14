@@ -8,7 +8,7 @@ import { toast } from 'react-toastify';
 import Input from '../Input/Input';
 import Button from '../Button/Button';
 
-import './styles.scss';
+import { SignUpContainer } from './SignUpStyles';
 
 const defaultFormFields = {
   displayName: '',
@@ -23,9 +23,7 @@ export default function SignUp() {
   const [formFields, setFormFields] = useState(defaultFormFields);
   const { displayName, email, password, confirmPassword } = formFields;
 
-  function resetFormFields() {
-    setFormFields(defaultFormFields);
-  }
+  const resetFormFields = () => setFormFields(defaultFormFields);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -49,7 +47,7 @@ export default function SignUp() {
   };
 
   return (
-    <div className='signUp'>
+    <SignUpContainer>
       <h2>I do not have an account</h2>
       <p>Sign up with your email and password</p>
 
@@ -88,6 +86,6 @@ export default function SignUp() {
         />
         <Button type='submit'>sign up</Button>
       </form>
-    </div>
+    </SignUpContainer>
   );
 }

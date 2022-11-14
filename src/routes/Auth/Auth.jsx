@@ -1,15 +1,13 @@
-import React from 'react';
-
 import SignIn from '../../Components/SignIn/SignIn';
 import SignUp from '../../Components/SignUp/SignUp';
 
-import './styles.scss';
+import { AuthContainer } from './AuthStyles';
 
 export default function Auth() {
   return (
-    <div className='auth'>
+    <AuthContainer>
       <SignIn />
       <SignUp />
-    </div>
+    </AuthContainer>
   );
 }
