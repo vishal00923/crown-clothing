@@ -6,11 +6,11 @@ import Spinner from '../../Components/Spinner/Spinner';
 import ProductCard from '../../Components/ProductCard/ProductCard';
 
 import {
-  selectCategoriesMap,
   selectIsLoading,
+  selectCategoriesMap,
 } from '../../store/category/categorySelector';
 
-import './styles.scss';
+import { Title, CategoryContainer } from './CategoryStyles';
 
 export default function Category() {
   const { category } = useParams();
@@ -26,16 +26,16 @@ export default function Category() {
 
   return (
     <>
-      <h2 className='title'>{category.toUpperCase()}</h2>
+      <Title>{category.toUpperCase()}</Title>
       {isLoading ? (
         <Spinner />
       ) : (
-        <div className='categoryContainer'>
+        <CategoryContainer>
           {products &&
             products.map((product) => (
               <ProductCard key={product.id} product={product} />
             ))}
-        </div>
+        </CategoryContainer>
       )}
     </>
   );

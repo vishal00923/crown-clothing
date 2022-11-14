@@ -17,12 +17,14 @@ export const Title = styled.h2`
 
 export const Preview = styled.div`
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-columns: repeat(4, 1fr);
   grid-gap: 40px;
 
   @media screen and (max-width: 800px) {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-gap: 25px;
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (min-width: 820px) and (max-width: 1024px) {
+    grid-template-columns: repeat(3, 1fr);
   }
 `;

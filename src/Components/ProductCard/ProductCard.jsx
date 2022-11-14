@@ -4,7 +4,7 @@ import { selectCartItems } from '../../store/cart/cartSelector';
 
 import Button from '../Button/Button';
 
-import './ProductCardStyles.scss';
+import { Name, Price, Footer, ProductCartContainer } from './ProductCardStyles';
 
 export default function ProductCard({ product }) {
   const dispatch = useDispatch();
@@ -13,18 +13,18 @@ export default function ProductCard({ product }) {
   const { imageUrl, name, price } = product;
 
   return (
-    <div className='productCardContainer'>
+    <ProductCartContainer>
       <img src={imageUrl} alt={`${name}`} />
-      <div className='productCardFooter'>
-        <span className='productName'>{name}</span>
-        <span className='productPrice'>${price}</span>
-      </div>
+      <Footer>
+        <Name>{name}</Name>
+        <Price>${price}</Price>
+      </Footer>
       <Button
         handleClick={() => dispatch(addItemToCart(cartItems, product))}
         type='inverted'
       >
         add to cart
       </Button>
-    </div>
+    </ProductCartContainer>
   );
 }
