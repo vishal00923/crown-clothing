@@ -20,8 +20,8 @@ export default function ProductCard({ product }) {
         <Price>${price}</Price>
       </Footer>
       <Button
-        handleClick={() => dispatch(addItemToCart(cartItems, product))}
-        type='inverted'
+        onClick={() => dispatch(addItemToCart(cartItems, product))}
+        buttonType='inverted'
       >
         add to cart
       </Button>

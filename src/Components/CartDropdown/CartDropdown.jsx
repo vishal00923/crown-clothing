@@ -26,7 +26,7 @@ export default function CartDropdown() {
           <EmptyMessage>Your cart is empty</EmptyMessage>
         )}
       </CartItems>
-      <Button handleClick={() => navigate('/checkout')}>go to checkout</Button>
+      <Button onClick={() => navigate('/checkout')}>go to checkout</Button>
     </CartDropdownContainer>
   );
 }

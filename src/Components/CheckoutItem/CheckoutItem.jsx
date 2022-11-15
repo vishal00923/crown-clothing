@@ -6,7 +6,15 @@ import {
 } from '../../store/cart/cartAction';
 import { selectCartItems } from '../../store/cart/cartSelector';
 
-import './styles.scss';
+import {
+  Value,
+  Arrow,
+  BaseSpan,
+  Quantity,
+  RemoveButton,
+  ImageContainer,
+  CheckoutItemContainer,
+} from './CheckoutItemStyles';
 
 export default function CheckoutItem({ cartItem }) {
   const dispatch = useDispatch();
@@ -14,40 +22,29 @@ export default function CheckoutItem({ cartItem }) {
 
   const { name, imageUrl, price, quantity } = cartItem;
 
-  const handleRemoveItemFromCart = () => {
-    dispatch(removeItemFromCart(cartItems, cartItem));
-  };
-
-  const handleAddItemToCart = () => {
-    dispatch(addItemToCart(cartItems, cartItem));
-  };
-
-  const handleClearItemFromCart = () => {
-    dispatch(clearItemFromCart(cartItems, cartItem));
-  };
-
   return (
-    <div className='checknoutItem'>
-      <div className='checkoutItem__ImgContainer'>
+    <CheckoutItemContainer>
+      <ImageContainer>
         <img src={imageUrl} alt={`${name}`} />
-      </div>
-      <span className='checkoutItem__Name'>{name}</span>
-      <span className='checkoutItem__Quantity'>
-        <div onClick={handleRemoveItemFromCart} className='checkoutItem__Arrow'>
+      </ImageContainer>
+      <BaseSpan>{name}</BaseSpan>
+      <Quantity>
+        <Arrow
+          onClick={() => dispatch(removeItemFromCart(cartItems, cartItem))}
+        >
           &#10094;
-        </div>
-        <span className='checkoutItem__Value'>{quantity}</span>
-        <div onClick={handleAddItemToCart} className='checkoutItem__Arrow'>
+        </Arrow>
+        <Value>{quantity}</Value>
+        <Arrow onClick={() => dispatch(addItemToCart(cartItems, cartItem))}>
           &#10095;
-        </div>
-      </span>
-      <span className='checkoutItem__Price'>${price * quantity}</span>
-      <div
-        onClick={handleClearItemFromCart}
-        className='checkoutItem__RemoveButton'
+        </Arrow>
+      </Quantity>
+      <BaseSpan>${price * quantity}</BaseSpan>
+      <RemoveButton
+        onClick={() => dispatch(clearItemFromCart(cartItems, cartItem))}
       >
         &#10006;
-      </div>
-    </div>
+      </RemoveButton>
+    </CheckoutItemContainer>
   );
 }
