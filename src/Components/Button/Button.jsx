@@ -1,22 +1,33 @@
-import React from 'react';
+import {
+  BaseButton,
+  GoogleSignInButton,
+  InvertedButton,
+  LoadingSpinner,
+} from './ButttonStyles';
 
-import './styles.scss';
+export const BUTTON_TYPE_CLASSES = {
+  base: 'base',
+  inverted: 'inverted',
+  google: 'google-sign-in',
+};
+
+export const getButton = (buttonType = BUTTON_TYPE_CLASSES.base) =>
+  ({
+    [BUTTON_TYPE_CLASSES.base]: BaseButton,
+    [BUTTON_TYPE_CLASSES.inverted]: InvertedButton,
+    [BUTTON_TYPE_CLASSES.google]: GoogleSignInButton,
+  }[buttonType]);
 
 export default function Button({
-  type,
-  styles,
   children,
-  isLoading,
-  handleClick,
+  buttonType,
+  isLoading = false,
+  ...otherProps
 }) {
+  const CustomButton = getButton(buttonType);
   return (
-    <button
-      style={styles}
-      disabled={isLoading}
-      onClick={handleClick}
-      className={`button ${type}`}
-    >
-      {isLoading ? <div className='spinner' /> : children}
-    </button>
+    <CustomButton disabled={isLoading} {...otherProps}>
+      {isLoading ? <LoadingSpinner /> : children}
+    </CustomButton>
   );
 }

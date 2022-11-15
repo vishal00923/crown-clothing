@@ -8,22 +8,18 @@ import {
 import { ReactComponent as CartIcon } from '../../assets/cart.svg';
 import CartDropdown from '../CartDropdown/CartDropdown';
 
-import './styles.scss';
+import { CartContainer, ItemCount } from './CartStyles';
 
 export default function Cart() {
   const dispatch = useDispatch();
   const cartCount = useSelector(selectCartCount);
   const isCartOpen = useSelector(selectIsCartOpen);
 
-  const toggleCart = () => {
-    dispatch(setIsCartOpen(!isCartOpen));
-  };
-
   return (
-    <div onClick={toggleCart} className='cart'>
-      <CartIcon className='cartIcon' />
-      <span className='cart__ItemCount'>{cartCount}</span>
+    <CartContainer onClick={() => dispatch(setIsCartOpen(!isCartOpen))}>
+      <CartIcon />
+      <ItemCount>{cartCount}</ItemCount>
       {isCartOpen && <CartDropdown />}
-    </div>
+    </CartContainer>
   );
 }
