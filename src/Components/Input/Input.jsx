@@ -1,14 +1,12 @@
-import React from 'react';
-
 import './styles.scss';
 
 export default function Input({
-  handleChange,
-  type,
   name,
-  value,
+  type,
   label,
+  value,
   required,
+  handleChange,
 }) {
   return (
     <div className='input'>

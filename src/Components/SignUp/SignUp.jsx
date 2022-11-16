@@ -19,8 +19,8 @@ const defaultFormFields = {
 
 export default function SignUp() {
   const dispatch = useDispatch();
-
   const [formFields, setFormFields] = useState(defaultFormFields);
+
   const { displayName, email, password, confirmPassword } = formFields;
 
   const resetFormFields = () => setFormFields(defaultFormFields);

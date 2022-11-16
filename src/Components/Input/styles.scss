@@ -28,6 +28,10 @@ $main-color: #000000;
     margin-top: 24px;
     margin-bottom: 24px;
 
+    @media screen and (max-width: 800px) {
+      width: 360px;
+    }
+
     &:focus {
       outline: none;
     }

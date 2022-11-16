@@ -27,13 +27,9 @@ export default function Nav() {
 
       <OptionContainer>
         <OptionLink to='/shop'>SHOP</OptionLink>
-        <OptionLink to='/contact'>CONTACT</OptionLink>
+        <OptionLink to='/'>CONTACT</OptionLink>
         {currentUser ? (
-          <OptionLink
-            as='div'
-            onClick={() => dispatch(signOutStart())}
-            style={{ cursor: 'pointer' }}
-          >
+          <OptionLink as='div' onClick={() => dispatch(signOutStart())}>
             SIGN OUT
           </OptionLink>
         ) : (
