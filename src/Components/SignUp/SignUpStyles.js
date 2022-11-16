@@ -13,7 +13,25 @@ export const SignUpContainer = styled.div`
     margin: 0 auto;
   }
 
-  @media screen and (max-width: 800px) {
+  @media screen and (max-width: 420px) {
+    width: 220px;
+
+    button {
+      width: 100%;
+    }
+
+    p,
+    h2 {
+      text-align: center;
+    }
+  }
+
+  @media screen and (max-width: 1024px) {
+    p,
+    h2 {
+      text-align: center;
+    }
+
     padding-top: 50px;
   }
 `;
